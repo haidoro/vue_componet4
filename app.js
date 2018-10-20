@@ -1,20 +1,25 @@
-
-var headerTemplate =`<div>
-<slot name="header">No title</slot>
-</div>`
-
-var contentTemplate = `
-<div>
-<slot name="content">No content</slot>
-</div>`
-
-Vue.component('page-header',{
-    template:headerTemplate
+// コンポーネント定義
+Vue.component('user-login', {
+    template: '#login-template',
+    data: function () {
+        return {
+            userid: '',
+            password: ''
+        }
+    },
+    methods: {
+        login: function () {
+            auth.login(this.userid, this.password);
+        }
+    }
 })
-Vue.component('page-content',{
-    template:contentTemplate
-})
 
+// ログイン周りのダミー
+var auth = {
+    login: function (id, pass) {
+        window.alert("userid:" + id + "\n" + "password:" + pass);
+    }
+}
 new Vue({
-    el:"#fruits-list"
-})
+    el: "#login-example"
+});
